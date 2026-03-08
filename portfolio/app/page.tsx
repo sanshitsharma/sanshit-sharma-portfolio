@@ -117,10 +117,6 @@ export default function Portfolio() {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleDownload = () => {
-    window.print();
-  };
-
   return (
     <div className="relative min-h-screen font-sans selection:bg-cyan-500/30">
       <AnimatedBackground />
@@ -192,10 +188,16 @@ export default function Portfolio() {
                 View Experience
                 <ChevronDown className="w-4 h-4 ml-2" />
               </a>
-              <button onClick={handleDownload} className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white transition-all border rounded-lg bg-white/5 border-white/10 hover:bg-white/10 hover:scale-105 active:scale-95 backdrop-blur-sm">
+              
+              {/* UPDATED DOWNLOAD BUTTON */}
+              <a 
+                href="/resume.pdf" 
+                download="Sanshit_Sharma_Resume.pdf" 
+                className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white transition-all border rounded-lg bg-white/5 border-white/10 hover:bg-white/10 hover:scale-105 active:scale-95 backdrop-blur-sm"
+              >
                 Download Resume
                 <Download className="w-4 h-4 ml-2" />
-              </button>
+              </a>
             </div>
           </motion.div>
         </section>
