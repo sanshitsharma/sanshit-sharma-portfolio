@@ -22,9 +22,9 @@ const resumeData = {
     summary: "GenAI software engineer with 12+ years building distributed systems at AWS, Cisco, and Qualcomm. Currently building Amazon Bedrock's core infrastructure; Model Migration, Model Evaluation and ML pipelines serving thousands of enterprise customers. Combines deep systems expertise with AI-assisted development practices to accelerate delivery velocity while maintaining production-grade quality. Shipped multiple AWS re:Invent launches (2023, 2025). Patent holder."
   },
   impactMetrics:[
-    { metric: "4w→2d", context: "Reduced model onboarding time from 4 weeks to 2 days" },
     { metric: "80%", context: "Reduced MTTR via AI root cause analysis using few-shot learning" },
-    { metric: "77%", context: "Container image reduction (3GB → 700MB) for production pipelines" }
+    { metric: "77%", context: "Container image reduction (3GB → 700MB) for production pipelines" },
+    { metric: "4w→2d", context: "Reduced model onboarding time from 4 weeks to 2 days" }
   ],
   experience:[
     {
@@ -250,14 +250,27 @@ export default function Portfolio() {
                       exit={{ height: 0, opacity: 0 }}
                       className="border-t border-white/10"
                     >
-                      <ul className="p-6 space-y-3">
+                      <ul className="p-6 space-y-2">
                         {job.bullets.map((bullet, bIdx) => {
-                          const isHighlight = bullet.includes('re:Invent') || bullet.includes('Reduced MTTR') || bullet.includes('Patent granted');
-                          return (
-                            <li key={bIdx} className="flex items-start gap-3">
-                              <ChevronRight className={`w-5 h-5 mt-0.5 shrink-0 ${isHighlight ? 'text-cyan-400' : 'text-slate-600'}`} />
-                              <span className={`text-sm leading-relaxed ${isHighlight ? 'text-slate-200 font-medium' : 'text-slate-400'}`}>
+                          // Logic: If line DOES NOT start with "•", it is a Header.
+                          const isHeader = !bullet.trim().startsWith("•");
+                          
+                          if (isHeader) {
+                            return (
+                              <li key={bIdx} className={`text-base font-bold text-cyan-400 ${bIdx > 0 ? 'mt-6' : 'mt-0'}`}>
                                 {bullet}
+                              </li>
+                            );
+                          }
+
+                          // If it is a bullet, remove the symbol for cleaner rendering
+                          const content = bullet.replace(/^•\s*/, '');
+                          
+                          return (
+                            <li key={bIdx} className="flex items-start gap-3 pl-4">
+                              <ChevronRight className="w-4 h-4 mt-1 shrink-0 text-slate-600" />
+                              <span className="text-sm leading-relaxed text-slate-300">
+                                {content}
                               </span>
                             </li>
                           )
@@ -370,35 +383,4 @@ export default function Portfolio() {
               </div>
               <div className="space-y-3">
                 {resumeData.awards.map((award, i) => (
-                  <div key={i} className="flex items-center gap-3 p-4 border rounded-lg glass-card text-slate-300 hover:bg-white/5 transition-colors">
-                    <Award className="w-5 h-5 shrink-0 text-yellow-500/70" />
-                    <span className="text-sm">{award}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Contact / Links */}
-            <div className="p-6 border bg-cyan-900/10 border-cyan-400/20 rounded-xl">
-              <h4 className="mb-4 text-lg font-bold text-white">Connect</h4>
-              <div className="space-y-2 text-sm text-slate-400">
-                <p>{resumeData.basics.email}</p>
-                <p>{resumeData.basics.phone}</p>
-                <p>{resumeData.basics.location}</p>
-                <div className="pt-4 space-y-2">
-                  {resumeData.basics.links.map((link, i) => (
-                    <a key={i} href={`https://${link}`} target="_blank" rel="noopener noreferrer" className="block text-cyan-400 hover:underline">
-                      {link}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-      </main>
-    </div>
-  );
-}
+                  <div key={i} className="flex items-center
