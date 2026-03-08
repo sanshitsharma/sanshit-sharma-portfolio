@@ -22,9 +22,9 @@ const resumeData = {
     summary: "GenAI software engineer with 12+ years building distributed systems at AWS, Cisco, and Qualcomm. Currently building Amazon Bedrock's core infrastructure; Model Migration, Model Evaluation and ML pipelines serving thousands of enterprise customers. Combines deep systems expertise with AI-assisted development practices to accelerate delivery velocity while maintaining production-grade quality. Shipped multiple AWS re:Invent launches (2023, 2025). Patent holder."
   },
   impactMetrics:[
+    { metric: "4w→2d", context: "Reduced model onboarding time from 4 weeks to 2 days" },
     { metric: "80%", context: "Reduced MTTR via AI root cause analysis using few-shot learning" },
-    { metric: "77%", context: "Container image reduction (3GB → 700MB) for production pipelines" },
-    { metric: "4w→2d", context: "Reduced model onboarding time from 4 weeks to 2 days" }
+    { metric: "77%", context: "Container image reduction (3GB → 700MB) for production pipelines" }
   ],
   experience:[
     {
