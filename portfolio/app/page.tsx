@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import AnimatedBackground from './components/AnimatedBackground';
 
-// Complete Resume Data Structure
+// --- RESUME DATA ---
 const resumeData = {
   basics: {
     name: "Sanshit Sharma",
@@ -16,23 +16,23 @@ const resumeData = {
     location: "Milpitas, CA 95035",
     email: "sanshit.sharma@gmail.com",
     phone: "408-250-5749",
-    links:[
+    links: [
       "linkedin.com/in/sanshitsharma"
     ],
     summary: "GenAI software engineer with 12+ years building distributed systems at AWS, Cisco, and Qualcomm. Currently building Amazon Bedrock's core infrastructure; Model Migration, Model Evaluation and ML pipelines serving thousands of enterprise customers. Combines deep systems expertise with AI-assisted development practices to accelerate delivery velocity while maintaining production-grade quality. Shipped multiple AWS re:Invent launches (2023, 2025). Patent holder."
   },
-  impactMetrics:[
+  impactMetrics: [
     { metric: "80%", context: "Reduced MTTR via AI root cause analysis using few-shot learning" },
     { metric: "77%", context: "Container image reduction (3GB → 700MB) for production pipelines" },
     { metric: "4w→2d", context: "Reduced model onboarding time from 4 weeks to 2 days" }
   ],
-  experience:[
+  experience: [
     {
       company: "Amazon Web Services (AWS)",
       role: "Software Development Engineer II",
       dates: "March 2022 - Present",
       location: "San Francisco Bay Area",
-      bullets:[
+      bullets: [
         "Bedrock Model Migration Service (re:Invent 2025)",
         "• Designed generic prompt extraction framework using JSON schemas to parse any InvokeModel payload, eliminating hardcoded model-specific parsers. Reduced time to onboard new models from 4 weeks to 2 days.",
         "• Owned end-to-end workflow orchestration—designed and implemented Step Functions & Lambda definitions and integrations across the 3-stage migration workflow",
@@ -54,7 +54,7 @@ const resumeData = {
       role: "Senior Software Engineer",
       dates: "May 2015 - March 2022",
       location: "San Jose, California",
-      bullets:[
+      bullets: [
         "• Technical lead for Crosswork Change Automation—designed cloud-deployable application for closed-loop automation in network data centers leveraging streaming telemetry for real-time device monitoring (Patent granted)",
         "• Delivered REST microservice application for change automation supporting pre/post checks with automatic rollback",
         "• Developed key modules for streaming telemetry in Cisco devices (C, C++, Python); presented at Cisco Live 2016",
@@ -66,38 +66,38 @@ const resumeData = {
       role: "Software Development Engineer",
       dates: "January 2013 - May 2015",
       location: "San Diego, California",
-      bullets:[
+      bullets: [
         "• Software development in C/C++ for mobile device modems across cellular protocols (GSM, LTE, Voice Over LTE)",
         "• Led software commercialization for customers in North America and Asia Pacific"
       ]
     }
   ],
-  skills:[
-    { group: "Languages", items:["Java", "Python", "GoLang"] },
-    { group: "AWS & AI/ML", items:["Bedrock", "SageMaker", "Lambda", "Step Functions", "CDK", "CloudWatch", "DynamoDB", "S3"] },
-    { group: "Infrastructure", items:["Distributed Systems", "State Machines", "CI/CD Pipelines", "Microservices"] },
-    { group: "Data & Messaging", items:["Kafka", "gRPC", "REST APIs", "PostgreSQL"] },
-    { group: "Development", items:["AI-assisted development (Kiro, Claude Code, Wasabi)", "Rapid prototyping", "Test-driven development"] }
+  skills: [
+    { group: "Languages", items: ["Java", "Python", "GoLang"] },
+    { group: "AWS & AI/ML", items: ["Bedrock", "SageMaker", "Lambda", "Step Functions", "CDK", "CloudWatch", "DynamoDB", "S3"] },
+    { group: "Infrastructure", items: ["Distributed Systems", "State Machines", "CI/CD Pipelines", "Microservices"] },
+    { group: "Data & Messaging", items: ["Kafka", "gRPC", "REST APIs", "PostgreSQL"] },
+    { group: "Development", items: ["AI-assisted development (Kiro, Claude Code, Wasabi)", "Rapid prototyping", "Test-driven development"] }
   ],
-  education:[
+  education: [
     { institution: "University of Cincinnati, Ohio", degree: "M.S., Computer Science", dates: "November 2012", gpa: "3.82" },
     { institution: "MANIT, Bhopal, India", degree: "B.Tech, Computer Science and Engineering", dates: "May 2008", gpa: null }
   ],
-  patents:[
+  patents: [
     {
       title: "Continuous Monitoring of Network Devices During Maintenance",
       details: "US Patent Application US20200358648A1, Cisco Technology Inc., Filed October 2019",
       link: "https://patents.google.com/patent/US20200358648A1/en"
     }
   ],
-  publications:[
+  publications: [
     {
       title: "T-Hex: True Hexagonal Regular Topology Formation in Large Scale Wireless Sensor Networks",
       details: "IEEE MASS 2012",
       link: "https://ieeexplore.ieee.org/document/6493538"
     }
   ],
-  awards:[
+  awards: [
     "Multiple re:Invent launches on Amazon Bedrock (2023, 2025) — AWS's flagship GenAI platform",
     "Certified Amazon Security Guardian: Helped multiple teams build secure architecture. Engagement from design to delivery.",
     "Five Cisco Connected Recognition awards for project contributions",
@@ -105,16 +105,17 @@ const resumeData = {
   ]
 };
 
+// --- MAIN COMPONENT ---
 export default function Portfolio() {
-  const[showSplash, setShowSplash] = useState(true);
-  const[openExpIndex, setOpenExpIndex] = useState<number | null>(0);
+  const [showSplash, setShowSplash] = useState(true);
+  const [openExpIndex, setOpenExpIndex] = useState<number | null>(0);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   useEffect(() => {
     const timer = setTimeout(() => setShowSplash(false), 1800);
     return () => clearTimeout(timer);
-  },[]);
+  }, []);
 
   const handleDownload = () => {
     window.print();
@@ -252,7 +253,6 @@ export default function Portfolio() {
                     >
                       <ul className="p-6 space-y-2">
                         {job.bullets.map((bullet, bIdx) => {
-                          // Logic: If line DOES NOT start with "•", it is a Header.
                           const isHeader = !bullet.trim().startsWith("•");
                           
                           if (isHeader) {
@@ -263,7 +263,6 @@ export default function Portfolio() {
                             );
                           }
 
-                          // If it is a bullet, remove the symbol for cleaner rendering
                           const content = bullet.replace(/^•\s*/, '');
                           
                           return (
@@ -383,4 +382,35 @@ export default function Portfolio() {
               </div>
               <div className="space-y-3">
                 {resumeData.awards.map((award, i) => (
-                  <div key={i} className="flex items-center
+                  <div key={i} className="flex items-center gap-3 p-4 border rounded-lg glass-card text-slate-300 hover:bg-white/5 transition-colors">
+                    <Award className="w-5 h-5 shrink-0 text-yellow-500/70" />
+                    <span className="text-sm">{award}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Contact / Links */}
+            <div className="p-6 border bg-cyan-900/10 border-cyan-400/20 rounded-xl">
+              <h4 className="mb-4 text-lg font-bold text-white">Connect</h4>
+              <div className="space-y-2 text-sm text-slate-400">
+                <p>{resumeData.basics.email}</p>
+                <p>{resumeData.basics.phone}</p>
+                <p>{resumeData.basics.location}</p>
+                <div className="pt-4 space-y-2">
+                  {resumeData.basics.links.map((link, i) => (
+                    <a key={i} href={`https://${link}`} target="_blank" rel="noopener noreferrer" className="block text-cyan-400 hover:underline">
+                      {link}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+    </div>
+  );
+}
