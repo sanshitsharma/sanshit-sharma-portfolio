@@ -94,7 +94,7 @@ const resumeData = {
     {
       title: "T-Hex: True Hexagonal Regular Topology Formation in Large Scale Wireless Sensor Networks",
       details: "IEEE MASS 2012",
-      link: "https://ieeexplore.ieee.org/document/6493538"
+      link: "https://ieeexplore.ieee.org/document/6708511"
     }
   ],
   awards: [
